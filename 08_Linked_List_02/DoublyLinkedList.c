@@ -1,5 +1,7 @@
 #include "DoublyLInkedLIst.h"
 
+static unsigned int nodeCount = 0;
+
 // 노드 생성
 Node* DLL_CreateNode(ElementType NewData)
 {
@@ -38,11 +40,30 @@ void DLL_AppendNode(Node** Head, Node* NewNode)
 		Tail->NextNode = NewNode;
 		NewNode->PrevNode = Tail; // 기존의 테일을 새로운 테일의 PrevNode가 가리킨다.
 	}
+
+	nodeCount++;
 }
 
+// 노드 삽입(앞에 삽입)
+void DLL_InsertBefore(Node** Head, Node* Current, Node* NewNode) {
+	if (Current == (*Head)) { // 헤드노드인 경우
+		NewNode->NextNode = (*Head);
+		(*Head)->PrevNode = NewNode;
 
-// 노드 삽입
+		(*Head) = NewNode;
+	}
+	else {
+		NewNode->PrevNode = Current->PrevNode;
+		NewNode->NextNode = Current;
 
+		NewNode->PrevNode->NextNode = NewNode;
+		NewNode->NextNode->PrevNode = NewNode;
+	}
+
+	nodeCount++;
+}
+
+// 노드 삽입(뒤에 삽입)
 void DLL_InsertAfter(Node* Current, Node* NewNode)
 {
 	NewNode->NextNode = Current->NextNode;
@@ -53,21 +74,27 @@ void DLL_InsertAfter(Node* Current, Node* NewNode)
 		Current->NextNode->PrevNode = NewNode;
 		Current->NextNode = NewNode;
 	}
+
+	nodeCount++;
 }
 
 // 헤드 노드 갱신
 void DLL_InsertNewHead(Node** Head, Node* NewHead)
 {
+	// 헤드 노드가 없는 경우
 	if (*Head == NULL)
 	{
 		*Head = NewHead;
 	}
+	// 헤드 노드가 있는 경우
 	else
 	{
 		NewHead->NextNode = *Head;
 		(*Head)->PrevNode = NewHead;
 		*Head = NewHead;
 	}
+
+	nodeCount++;
 }
 
 // 노드 제거
@@ -101,6 +128,8 @@ void DLL_RemoveNode(Node** Head, Node* Remove)
 		Remove->PrevNode = NULL;
 		Remove->NextNode = NULL;
 	}
+
+	nodeCount--;
 }
 
 // 노드 탐색
@@ -119,8 +148,7 @@ Node* DLL_GetNodeAt(Node* Head, int Location)
 // 노드 개수 세기
 int DLL_GetNodeCount(Node* Head)
 {
-	unsigned int Count = 0;
-
+	/*unsigned int Count = 0;
 	Node* Current = Head;
 
 	while (Current != NULL)
@@ -129,7 +157,9 @@ int DLL_GetNodeCount(Node* Head)
 		Count++;
 	}
 
-	return Count;
+	return Count;*/
+
+	return nodeCount;
 }
 
 void PrintNode(Node* _Node)

@@ -71,7 +71,7 @@ int main(void)
 		DLL_AppendNode(&List, NewNode);
 	}
 
-	// Before 리스트 출력
+	// 리스트 출력
 	printf("<Before List>\n");
 	Count = DLL_GetNodeCount(List);
 	for (i = 0; i < Count; i++)
@@ -84,7 +84,7 @@ int main(void)
 	NewNode = DLL_CreateNode(6000);
 	DLL_InsertNewHead(&List, NewNode);
 
-	// After 리스트 출력
+	// 리스트 출력
 	printf("<After List>\n");
 	Count = DLL_GetNodeCount(List);
 	for (i = 0; i < Count; i++)
@@ -134,8 +134,54 @@ int main(void)
 		printf("List[%d] : %d\n", i, Current->Data);
 	}
 
-	// 테스트
+	// 모든 노드를 메모리에서 제거
+	printf("\nDestroying List...\n");
+
 	Count = DLL_GetNodeCount(List);
+
+	for (i = 0; i < Count; i++)
+	{
+		Current = DLL_GetNodeAt(List, 0);
+
+		if (Current != NULL)
+		{
+			DLL_RemoveNode(&List, Current);
+			DLL_DestroyNode(Current);
+		}
+	}
+
+	// 문제 3. InsertBefore 함수 만들고 테스트 하기
+	printf("\n\nQ 03)\n");
+
+	// 노드 5개 추가
+	for (i = 0; i < 5; i++)
+	{
+		NewNode = DLL_CreateNode(i);
+		DLL_AppendNode(&List, NewNode);
+	}
+
+	// 리스트 출력
+	printf("<Before List>\n");
+	Count = DLL_GetNodeCount(List);
+	for (i = 0; i < Count; i++)
+	{
+		Current = DLL_GetNodeAt(List, i);
+		printf("List[%d] : %d\n", i, Current->Data);
+	}
+
+	// 세번째 노드에 데이터 6000 노드 추가
+	Current = DLL_GetNodeAt(List, 2);
+	NewNode = DLL_CreateNode(6000);
+	DLL_InsertBefore(&List, Current, NewNode);
+
+	// 리스트 출력
+	printf("<After List>\n");
+	Count = DLL_GetNodeCount(List);
+	for (i = 0; i < Count; i++)
+	{
+		Current = DLL_GetNodeAt(List, i);
+		printf("List[%d] : %d\n", i, Current->Data);
+	}
 
 	// 모든 노드를 메모리에서 제거
 	printf("\nDestroying List...\n");
