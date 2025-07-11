@@ -16,6 +16,7 @@ typedef struct tagNode
 Node* SLL_CreateNode(ElementType NewData);
 void SLL_DestroyNode(Node* Node);
 void SLL_AppendNode(Node** Head, Node* NewNode);
+void SLL_InsertBefore(Node* Current, Node* NewNode);
 void SLL_InsertAfter(Node* Current, Node* NewNode);
 void SLL_InsertNewHead(Node** Head, Node* NewNode);
 void SLL_RemoveNode(Node** Head, Node* Remove);

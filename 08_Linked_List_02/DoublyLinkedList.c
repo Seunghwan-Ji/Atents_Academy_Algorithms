@@ -55,6 +55,21 @@ void DLL_InsertAfter(Node* Current, Node* NewNode)
 	}
 }
 
+// 헤드 노드 갱신
+void DLL_InsertNewHead(Node** Head, Node* NewHead)
+{
+	if (*Head == NULL)
+	{
+		*Head = NewHead;
+	}
+	else
+	{
+		NewHead->NextNode = *Head;
+		(*Head)->PrevNode = NewHead;
+		*Head = NewHead;
+	}
+}
+
 // 노드 제거
 void DLL_RemoveNode(Node** Head, Node* Remove)
 {
@@ -105,6 +120,7 @@ Node* DLL_GetNodeAt(Node* Head, int Location)
 int DLL_GetNodeCount(Node* Head)
 {
 	unsigned int Count = 0;
+
 	Node* Current = Head;
 
 	while (Current != NULL)

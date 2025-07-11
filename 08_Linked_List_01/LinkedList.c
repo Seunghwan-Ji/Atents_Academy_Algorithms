@@ -19,6 +19,8 @@ void SLL_DestroyNode(Node* Node)
 
 // 노드 추가
 void SLL_AppendNode(Node** Head, Node* NewNode)
+// 일반 포인터(Node* Head)는 복사된 포인터 값만 변경되므로 호출자에 영향을 못 줌.
+// 이런 이유로 Node** 타입을 사용.
 {
 	// 헤드 노드가 NULL이라면 새로운 노드가 Head
 	if ((*Head) == NULL)
