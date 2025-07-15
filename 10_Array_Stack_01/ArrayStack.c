@@ -30,17 +30,14 @@ void AS_DestroyStack(ArrayStack* Stack)
 
 void AS_Push(ArrayStack* Stack, ElementType Data)
 {
-	if (!AS_IsFull(Stack))
+	if (AS_IsFull(Stack))
 	{
-		Stack->Top++;
-		Stack->Nodes[Stack->Top].Data = Data;
-	}
-	else
-	{
-		Stack->Nodes = (Node*)realloc(Stack->Nodes, sizeof(Node) * (Stack->Capacity * 2));
 		Stack->Capacity *= 2;
-		AS_Push(Stack, Data);
+		Stack->Nodes = (Node*)realloc(Stack->Nodes, sizeof(Node) * (Stack->Capacity));
 	}
+
+	Stack->Top++;
+	Stack->Nodes[Stack->Top].Data = Data;
 }
 
 ElementType AS_Pop(ArrayStack* Stack)
