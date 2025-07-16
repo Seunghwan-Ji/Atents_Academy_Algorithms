@@ -8,7 +8,6 @@
 typedef struct tagNode
 {
     char* Data;
-    struct tagNode* PrevNode;
     struct tagNode* NextNode;
 } Node;
 
@@ -16,7 +15,6 @@ typedef struct tagLinkedListStack
 {
     Node* List;
     Node* Top;
-    int Count;
 } LinkedListStack;
 
 void  LLS_CreateStack( LinkedListStack** Stack );

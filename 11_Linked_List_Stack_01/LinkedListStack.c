@@ -3,7 +3,7 @@
 
 // 문제 1. LLS_GetSize 함수 개선
 
-unsigned int nodeCount = 0;
+// 문제 2. LLS_Pop 함수 개선
 
 void  LLS_CreateStack(LinkedListStack** Stack)
 {
@@ -11,6 +11,7 @@ void  LLS_CreateStack(LinkedListStack** Stack)
     (*Stack) = (LinkedListStack*)malloc(sizeof(LinkedListStack));
     (*Stack)->List = NULL;
     (*Stack)->Top = NULL;
+    (*Stack)->Count = 0;
 }
 
 void LLS_DestroyStack(LinkedListStack* Stack)
@@ -32,7 +33,8 @@ Node* LLS_CreateNode(char* NewData)
 
     strcpy(NewNode->Data, NewData);  //  데이터를 저장한다. 
 
-    NewNode->NextNode = NULL; //  다음 노드에 대한 포인터는 NULL로 초기화한다. 
+    NewNode->PrevNode = NULL;
+    NewNode->NextNode = NULL; //  다음 노드에 대한 포인터는 NULL로 초기화한다.
 
     return NewNode;//  노드의 주소를 반환한다.
 }
@@ -53,12 +55,13 @@ void LLS_Push(LinkedListStack* Stack, Node* NewNode)
     {
         //  스택의 Top에 신규 노드를 연결한다.
         Stack->Top->NextNode = NewNode;
+        NewNode->PrevNode = Stack->Top;
     }
 
     //  스택의 Top 필드에 새 노드의 주소를 등록한다. 
     Stack->Top = NewNode;
 
-    nodeCount++;
+    Stack->Count++;
 }
 
 Node* LLS_Pop(LinkedListStack* Stack)
@@ -73,19 +76,25 @@ Node* LLS_Pop(LinkedListStack* Stack)
     }
     else
     {
-        // Top 아래에 있던 노드를 새로운 CurrentTop에 저장 
+        // Top 아래에 있던 노드를 새로운 CurrentTop에 저장
+        /*
         Node* CurrentTop = Stack->List;
         while (CurrentTop != NULL && CurrentTop->NextNode != Stack->Top)
         {
             CurrentTop = CurrentTop->NextNode;
         }
+        */
 
         // CurrentTop을 Top에 저장
-        Stack->Top = CurrentTop;
+        // Stack->Top = CurrentTop;
+
+        Stack->Top = Stack->Top->PrevNode;
         Stack->Top->NextNode = NULL;
     }
 
-    nodeCount--;
+    TopNode->PrevNode = NULL;
+
+    Stack->Count--;
 
     return TopNode;
 }
@@ -108,7 +117,7 @@ int LLS_GetSize(LinkedListStack* Stack)
 
     return Count;*/
 
-    return nodeCount;
+    return Stack->Count;
 }
 
 int LLS_IsEmpty(LinkedListStack* Stack)
