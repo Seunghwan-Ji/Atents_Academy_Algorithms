@@ -22,15 +22,18 @@ void CQ_DestroyQueue( CircularQueue* Queue )
 void CQ_Enqueue( CircularQueue* Queue, ElementType Data)
 {
     int Position=0;
-  
+    
+    // Real이 큐의 끝에 도달했다면.
     if(Queue->Rear==Queue->Capacity)
     {
         Position=Queue->Rear;
-        Queue->Rear=0;
+        Queue->Rear=0; // real을 맨 앞으로 이동.
     }
     else
+        // 포지션 갱신 후, real을 증가시킴.
         Position=Queue->Rear++;
-  
+    
+    // 데이터 추가.
     Queue->Nodes[Position].Data=Data;
 }
 
@@ -38,9 +41,12 @@ ElementType CQ_Dequeue( CircularQueue* Queue )
 {
     int Position = Queue->Front;
 
+    // Front가 큐의 끝에 도달했다면.
     if ( Queue->Front == Queue->Capacity )
+        // Front를 맨 앞으로 이동.
         Queue->Front = 0;
     else
+        // Front 증가.
         Queue->Front++;
 
     return Queue->Nodes[Position].Data;
