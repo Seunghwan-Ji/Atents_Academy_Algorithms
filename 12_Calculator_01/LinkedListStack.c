@@ -1,8 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "LinkedListStack.h"
 
 void  LLS_CreateStack( LinkedListStack** Stack )
 {
-    //  ìŠ¤íƒì„ ìžìœ  ì €ìž¥ì†Œì— ìƒì„± 
+    //  ½ºÅÃÀ» ÀÚÀ¯ ÀúÀå¼Ò¿¡ »ý¼º 
     (*Stack )       = ( LinkedListStack*)malloc(sizeof( LinkedListStack ) );
     (*Stack )->List = NULL;
     (*Stack )->Top  = NULL;
@@ -16,7 +17,7 @@ void LLS_DestroyStack( LinkedListStack* Stack )
         LLS_DestroyNode(Popped);    
     }
 
-    //  ìŠ¤íƒì„ ìžìœ  ì €ìž¥ì†Œì—ì„œ í•´ì œ 
+    //  ½ºÅÃÀ» ÀÚÀ¯ ÀúÀå¼Ò¿¡¼­ ÇØÁ¦ 
     free(Stack );
 }
 
@@ -25,11 +26,11 @@ Node* LLS_CreateNode( char* NewData )
     Node* NewNode = ( Node*)malloc(sizeof( Node ) );
     NewNode->Data = ( char*)malloc(strlen( NewData ) + 1);
 
-    strcpy( NewNode->Data, NewData );  //  ë°ì´í„°ë¥¼ ì €ìž¥í•œë‹¤. 
+    strcpy( NewNode->Data, NewData );  //  µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù. 
 
-    NewNode->NextNode = NULL; //  ë‹¤ìŒ ë…¸ë“œì— ëŒ€í•œ í¬ì¸í„°ëŠ” NULLë¡œ ì´ˆê¸°í™”í•œë‹¤. 
+    NewNode->NextNode = NULL; //  ´ÙÀ½ ³ëµå¿¡ ´ëÇÑ Æ÷ÀÎÅÍ´Â NULL·Î ÃÊ±âÈ­ÇÑ´Ù. 
 
-    return NewNode;//  ë…¸ë“œì˜ ì£¼ì†Œë¥¼ ë°˜í™˜í•œë‹¤. 
+    return NewNode;//  ³ëµåÀÇ ÁÖ¼Ò¸¦ ¹ÝÈ¯ÇÑ´Ù. 
 }
 
 void  LLS_DestroyNode( Node* _Node )
@@ -46,17 +47,17 @@ void LLS_Push( LinkedListStack* Stack, Node* NewNode )
     } 
     else
     {
-        //  ìŠ¤íƒì˜ Topì— ì‹ ê·œ ë…¸ë“œë¥¼ ì—°ê²°í•œë‹¤.
+        //  ½ºÅÃÀÇ Top¿¡ ½Å±Ô ³ëµå¸¦ ¿¬°áÇÑ´Ù.
         Stack->Top->NextNode = NewNode;
     }
     
-    //  ìŠ¤íƒì˜ Top í•„ë“œì— ìƒˆ ë…¸ë“œì˜ ì£¼ì†Œë¥¼ ë“±ë¡í•œë‹¤. 
+    //  ½ºÅÃÀÇ Top ÇÊµå¿¡ »õ ³ëµåÀÇ ÁÖ¼Ò¸¦ µî·ÏÇÑ´Ù. 
     Stack->Top = NewNode;
 }
 
 Node* LLS_Pop( LinkedListStack* Stack )
 {
-    //  LLS_Pop() í•¨ìˆ˜ê°€ ë°˜í™˜í•  ìµœìƒìœ„ ë…¸ë“œ ì €ìž¥ 
+    //  LLS_Pop() ÇÔ¼ö°¡ ¹ÝÈ¯ÇÒ ÃÖ»óÀ§ ³ëµå ÀúÀå 
     Node* TopNode = Stack->Top;
 
 
@@ -67,14 +68,14 @@ Node* LLS_Pop( LinkedListStack* Stack )
     }
     else
     {
-        // Top ì•„ëž˜ì— ìžˆë˜ ë…¸ë“œë¥¼ ìƒˆë¡œìš´ CurrentTopì— ì €ìž¥ 
+        // Top ¾Æ·¡¿¡ ÀÖ´ø ³ëµå¸¦ »õ·Î¿î CurrentTop¿¡ ÀúÀå 
         Node* CurrentTop = Stack->List;
         while ( CurrentTop != NULL && CurrentTop->NextNode != Stack->Top )
         {
             CurrentTop = CurrentTop->NextNode;
         }
 
-        // CurrentTopì„ Topì— ì €ìž¥
+        // CurrentTopÀ» Top¿¡ ÀúÀå
         Stack->Top = CurrentTop;
         Stack->Top->NextNode = NULL;
     }
