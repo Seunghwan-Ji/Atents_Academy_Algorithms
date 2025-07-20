@@ -17,12 +17,14 @@ int main( void )
     printf( "Enter Infix Expression:" );
     scanf( "%s", InfixExpression );
     
+    // 후위식으로 변환.
     GetPostfix( InfixExpression, PostfixExpression );
     
     printf( "Infix:%s\nPostfix:%s\n",
              InfixExpression,
              PostfixExpression );
 
+    // 변환된 후위식으로 계산.
 	Result = Calculate( PostfixExpression );
 
     printf( "Calculation Result : %f\n", Result );

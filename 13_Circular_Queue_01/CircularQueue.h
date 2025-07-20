@@ -15,8 +15,8 @@ typedef struct tagNode
 typedef struct tagCircularQueue
 {
     int   Capacity; // 총 저장 가능 개수
-    int   Front; // 가장 오래된 요소의 위치 (삭제 대상의 *직전* 인덱스)
-    int   Rear; // 마지막으로 삽입된 요소의 위치
+    int   Front; // 다음에 삭제될 데이터의 자리. (선출 대기번호)
+    int   Rear; // 다음 데이터가 들어갈 자리를 가리킴. (마지막으로 삽입된 데이터 다음 위치)
 
     Node* Nodes; // 노드 배열.
 } CircularQueue;

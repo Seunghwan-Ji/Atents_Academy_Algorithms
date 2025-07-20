@@ -164,43 +164,51 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 
 double Calculate(char* PostfixExpression)
 {
-    LinkedListStack* Stack;
-    Node* ResultNode;
+    LinkedListStack* Stack; // 피연산자를 저장할 스택.
+    Node* ResultNode; // 최종 결과를 담을 노드.
 
-    double Result;
-    char Token[32];
-    int  Type = -1;
-    unsigned int Read = 0;
-    unsigned int Length = strlen(PostfixExpression);
+    double Result; // 계산 결과.
+    char Token[32]; // 토큰 문자열 저장용 배열.
+    int  Type = -1; // 토큰 타입 식별자.
+    unsigned int Read = 0; // 문자열 읽기 위치(인덱스)
+    unsigned int Length = strlen(PostfixExpression); // 전체 문자열 길이.
 
     LLS_CreateStack(&Stack);
 
+    // 전체 문자열을 끝까지 순회.
     while (Read < Length)
     {
+        // 추출한 문자 수만큼 Read를 증가시켜 다음으로 이동.
         Read += GetNextToken(&PostfixExpression[Read], Token, &Type);
 
+        // 공백은 무시하고 다음 루프로.
         if (Type == SPACE)
             continue;
 
+        // 피연산자인 경우.
         if (Type == OPERAND)
         {
             Node* NewNode = LLS_CreateNode(Token);
-            LLS_Push(Stack, NewNode);
+            LLS_Push(Stack, NewNode); // 숫자 문자열 저장.
         }
+        // 연산자인 경우.
         else
         {
             char   ResultString[32];
             double Operator1, Operator2, TempResult;
             Node* OperatorNode;
 
+            // 스택에서 두 번째 피연산자를 꺼내고 문자열을 실수형으로 변환.
             OperatorNode = LLS_Pop(Stack);
             Operator2 = atof(OperatorNode->Data);
             LLS_DestroyNode(OperatorNode);
 
+            // 스택에서 첫 번째 피연산자를 꺼내고 실수형으로 변환.
             OperatorNode = LLS_Pop(Stack);
             Operator1 = atof(OperatorNode->Data);
             LLS_DestroyNode(OperatorNode);
 
+            // 연산자 타입에 맞게 선택해 계산.
             switch (Type)
             {
             case PLUS:     TempResult = Operator1 + Operator2; break;
@@ -209,15 +217,20 @@ double Calculate(char* PostfixExpression)
             case DIVIDE:   TempResult = Operator1 / Operator2; break;
             }
 
+            // 계산 결과를 문자열로 변환하고 다시 스택에 푸시.
             gcvt(TempResult, 10, ResultString);
             LLS_Push(Stack, LLS_CreateNode(ResultString));
         }
     }
 
+    // 스택에 남은 최종 결과 노드를 꺼내어 변수에 저장.
     ResultNode = LLS_Pop(Stack);
-    Result = atof(ResultNode->Data);
-    LLS_DestroyNode(ResultNode);
 
+    // 결과물 노드의 타입을 실수로 변환.
+    Result = atof(ResultNode->Data);
+
+    // 스택 메모리 해제.
+    LLS_DestroyNode(ResultNode);
     LLS_DestroyStack(Stack);
 
     return Result;

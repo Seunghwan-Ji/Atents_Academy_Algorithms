@@ -13,9 +13,9 @@ typedef struct tagNode
 
 typedef struct tagLinkedQueue
 {
-    Node* Front;
-    Node* Rear;
-    int   Count;
+    Node* Front; // 다음에 삭제될 노드.
+    Node* Rear; // 마지막 노드.
+    int   Count; // 노드 개수.
 } LinkedQueue;
 
 void  LQ_CreateQueue( LinkedQueue** Queue );
