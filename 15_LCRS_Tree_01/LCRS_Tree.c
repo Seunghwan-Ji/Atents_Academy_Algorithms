@@ -16,6 +16,50 @@ void LCRS_LevelPrintTree(LCRSNode* Node, int level)
 		LCRS_LevelPrintTree(Node->RightSibling, level);
 }
 
+// ∞≠ªÁ¥‘ «Æ¿Ã.
+void LCRS_LevelPrintTree2(LCRSNode* Node, int Depth, int level) {
+
+	if (level < Depth)
+	{
+		return;
+	}
+
+	if (Depth == level)
+	{
+		printf("%c, ", Node->Data);
+	}
+
+	if (Node->LeftChild != NULL)
+	{
+		LCRS_LevelPrintTree2(Node->LeftChild, Depth + 1, level);
+	}
+
+	if (Node->RightSibling != NULL)
+	{
+		LCRS_LevelPrintTree2(Node->RightSibling, Depth, level);
+	}
+}
+
+void LCRS_LevelPrintTree3(LCRSNode* Tree, int level)
+{
+	if (level < 0) return;
+
+	if (level == 0)
+	{
+		printf("%c, ", Tree->Data);
+	}
+
+	if (Tree->LeftChild != NULL)
+	{
+		LCRS_LevelPrintTree3(Tree->LeftChild, level - 1);
+	}
+
+	if (Tree->RightSibling != NULL)
+	{
+		LCRS_LevelPrintTree3(Tree->RightSibling, level);
+	}
+}
+
 LCRSNode* LCRS_CreateNode(ElementType NewData)
 {
 	LCRSNode* NewNode = (LCRSNode*)malloc(sizeof(LCRSNode));

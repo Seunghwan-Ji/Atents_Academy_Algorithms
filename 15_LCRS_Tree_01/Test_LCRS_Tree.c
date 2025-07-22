@@ -35,9 +35,12 @@ int main(void)
 
     // 레벨로 트리 출력.
     int level = 2;
-    printf("\nprint tree level:%d\n", level);
+    printf("\nprint tree level: %d\n", level);
     LCRS_LevelPrintTree(Root, level);
-    printf("NULL\n");
+    printf("\n");
+    LCRS_LevelPrintTree2(Root, 0, level);
+    printf("\n");
+    LCRS_LevelPrintTree3(Root, level);
 
     //  트리 소멸시키기 
     LCRS_DestroyTree(Root);
