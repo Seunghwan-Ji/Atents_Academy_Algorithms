@@ -2,6 +2,7 @@
 
 void DS_UnionSet( DisjointSet* Set1, DisjointSet* Set2 )
 {
+    // Set2 의 최상위 부모를 Set1로.
     Set2 = DS_FindSet(Set2);
     Set2->Parent = Set1;
 }
