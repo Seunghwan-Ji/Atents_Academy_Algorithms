@@ -2,7 +2,7 @@
 
 // 버블 정렬.
 
-void PrintArray(int* array, int arraySize)
+void PrintArray(const int* array, int arraySize)
 {
 	for (int i = 0; i < arraySize; i++)
 	{
