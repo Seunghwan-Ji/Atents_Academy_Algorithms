@@ -18,6 +18,7 @@ void InsertionSort(int DataSet[], int Length)
         {
             if (DataSet[j] > value)
             {
+                // memmove(복사될 목적지 포인터, 복사할 원본 포인터, 복사할 바이트 수)
                 memmove(&DataSet[j + 1], &DataSet[j], sizeof(DataSet[0]) * (i - j));
                 DataSet[j] = value;
                 break;
