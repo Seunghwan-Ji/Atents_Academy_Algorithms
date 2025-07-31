@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Score.h"
+#include <time.h>
 
 void Descending_BubbleSort(Score* dataSet, int length)
 {
@@ -54,16 +55,16 @@ void Swap(Score* A, Score* B)
 int Partition_For_Descending(Score* DataSet, int Left, int Right)
 {
     int First = Left;
-    int Pivot = DataSet[First].score;
+    Score Pivot = DataSet[First];
 
     ++Left;
 
     while (Left <= Right)
     {
-        while (DataSet[Left].score >= Pivot && Left < Right)
+        while (DataSet[Left].score >= Pivot.score && Left < Right)
             ++Left;
 
-        while (DataSet[Right].score <= Pivot && Left <= Right)
+        while (DataSet[Right].score <= Pivot.score && Left <= Right)
             --Right;
 
         if (Left < Right)
@@ -113,10 +114,17 @@ int main()
 
     int Length = sizeof DataSet / sizeof DataSet[0];
 
+    double startTime = 0.0, endTime = 0.0;
+    startTime = (double)clock() / CLOCKS_PER_SEC;
+
     // Descending_BubbleSort(DataSet, Length);
     // Descending_InsertionSort(DataSet, Length);
-    // Descending_QuickSort(DataSet, 0, Length - 1);
-    qsort(DataSet, Length, sizeof(Score), ComparePoint_For_Descending);
+    Descending_QuickSort(DataSet, 0, Length - 1);
+    // qsort(DataSet, Length, sizeof(Score), ComparePoint_For_Descending);
+    // 표준 퀵소트가 기존 퀵소트보다 느림.
+    // 표준 퀵소트는 안정성을 고려하여 만들었기 때문.
+
+    endTime = (double)clock() / CLOCKS_PER_SEC;
 
     printf("상위 10:\n");
     for (int i = 0; i < 10; i++)
@@ -129,6 +137,8 @@ int main()
     {
         printf("%d위 - 번호: %d, 점수: %lf\n", i + 1, DataSet[i].number, DataSet[i].score);
     }
+
+    printf("\n3만개 데이터 소팅 시간: %lf sec\n", endTime - startTime);
 
     return 0;
 }
