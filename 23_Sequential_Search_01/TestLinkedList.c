@@ -128,6 +128,11 @@ Node* FrequencyMethod(Node** Head, double Target)
 			findedNode->NextNode = currentNode;
 			break;
 		}
+		else if (findedNode->Frequency == currentNode->Frequency &&
+			findedNode == currentNode)
+		{
+			return findedNode;
+		}
 
 		prevNode = currentNode;
 		currentNode = currentNode->NextNode;
@@ -155,61 +160,20 @@ int main(void)
 		SLL_AppendNode(&List, NewNode);
 	}
 
-	// 찾는 값.
-	double findScore = 1.1;
-
-	printf("SequentialSearch 함수 호출, 찾는 값: %lf\n", findScore);
-	Node* findedNode = SequentialSearch(List, findScore);
-	if (findedNode)
-		printf("찾는 Score값과 동일한 노드의 Score: %lf\n", findedNode->Data.score);
-	else
-		printf("찾는 Score값과 동일한 노드 없음.\n");
-
-
-	findScore = 365.92;
-	printf("\nMoveToFront 함수 호출, 찾는 값: %lf\n", findScore);
-	MoveToFront(&List, findScore);
-	for (int i = 0; i < 10; i++)
-	{
-		Current = SLL_GetNodeAt(List, i);
-		printf("DataSet[%d] Number: %d, Score: %.4lf\n",
-			i, Current->Data.number, Current->Data.score);
-	}
-	
-
-	findScore = 162.44;
-	printf("\nTranspose 함수 호출, 찾는 값: %lf\n", findScore);
-	Transpose(&List, findScore);
-	for (int i = 0; i < 10; i++)
-	{
-		Current = SLL_GetNodeAt(List, i);
-		printf("DataSet[%d] Number: %d, Score: %.4lf\n",
-			i, Current->Data.number, Current->Data.score);
-	}
-
-
-	findScore = 224.72;
-	printf("\nFrequencyMethod 함수 호출, 찾는 값: %lf\n", findScore);
-	FrequencyMethod(&List, findScore);
-	for (int i = 0; i < 10; i++)
-	{
-		Current = SLL_GetNodeAt(List, i);
-		printf("DataSet[%d] Number: %d, Score: %.4lf, Frequency: %d\n",
-			i, Current->Data.number, Current->Data.score, Current->Frequency);
-	}
-
 	// 찾는 값을 찾는 반복연산
-	/*
-	while (1) {
+	
+	while (1)
+	{
 		printf("\n찾는 score값을 입력하세요: ");
 		scanf_s("%lf", &InputValue);
 
-		if (InputValue <= 0.0) {
+		if (InputValue <= 0.0)
+		{
 			printf("찾는 작업을 중단하고 프로그램을 종료합니다.\n");
 			break;
 		}
 
-		Node* targetNode = SequentialSearch(List, InputValue);
+		Node* targetNode = FrequencyMethod(&List, InputValue);
 
 		if (targetNode != NULL)
 		{	// 찾는 score값을 가진 노드를 찾은 경우
@@ -238,8 +202,7 @@ int main(void)
 				i, Current->Frequency, Current->Data.number, Current->Data.score);
 		}
 
-	}
-	*/
+	}	
 
 	//  모든 노드를 메모리에서 제거     
 	printf("\nDestroying List...\n");
