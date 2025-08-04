@@ -46,7 +46,7 @@ int IsValidInput(const char* array, int length)
 		case '9':
 			if (IsNumberInArray(tempArr, length, array[i]))
 			{
-				printf("숫자를 중복없이 입력하세요.\n");
+				printf("숫자를 중복없이 입력하세요.\n\n");
 				return 0;
 			}
 			else
@@ -54,7 +54,7 @@ int IsValidInput(const char* array, int length)
 
 			break;
 		default:
-			printf("4자리 숫자만 입력하세요.\n");
+			printf("4자리 숫자만 입력하세요.\n\n");
 			return 0;
 		}
 	}
@@ -119,6 +119,16 @@ int IsCorrect(const char* array, int length)
 	return 1;
 }
 
+int ClearReadBuffer() // scanf_s 함수가 읽지 않은 입력 버퍼 읽어서 비우도록 처리.
+{
+	int clear = 0;
+
+	while (getchar() != '\n') // 줄바꿈 문자를 읽었으면 종료.
+		clear = 1;
+
+	return clear;
+}
+
 int main()
 {
 	char numberArr[5];
@@ -156,12 +166,16 @@ int main()
 		{
 			printf("정답 입력: ");
 			scanf_s("%4s", InputCorrect, (unsigned int)sizeof(InputCorrect));
+			
+			if (ClearReadBuffer())
+			{
+				printf("다시 입력하세요.\n\n");
+				continue;
+			}
 
 			if (IsValidInput(InputCorrect, length))
 				break;
 		}
-
-		printf("입력한 숫자: %s\n", InputCorrect);
 
 		for (int j = 0; j < length - 1; j++)
 		{
@@ -201,18 +215,24 @@ int main()
 	while (1)
 	{
 		printf("게임을 처음부터 다시 시작하겠습니까? (네: 1, 아니오: 0): ");
-		scanf_s("%s", answer, (unsigned int)sizeof(answer));
-		printf("\n");
+		scanf_s("%1s", answer, (unsigned int)sizeof(answer));
+
+		if (ClearReadBuffer())
+		{
+			printf("다시 입력하세요.\n\n");
+			continue;
+		}
 
 		switch (answer[0])
 		{
 		case '1':
+			printf("\n");
 			main();
 			return;
 		case '0':
 			return;
 		default:
-			printf("입력 오류\n");
+			printf("입력 오류\n\n");
 			break;
 		}
 	}
