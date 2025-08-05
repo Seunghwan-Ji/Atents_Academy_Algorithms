@@ -108,6 +108,7 @@ int IsBullsOrCows(const char* array, int length, char number, int index)
 	return None;
 }
 
+/*
 int IsCorrect(const char* array, int length)
 {
 	for (int i = 0; i < length - 1; i++)
@@ -118,6 +119,7 @@ int IsCorrect(const char* array, int length)
 
 	return 1;
 }
+*/
 
 int ClearReadBuffer() // scanf_s 함수가 읽지 않은 입력 버퍼 읽어서 비우도록 처리.
 {
