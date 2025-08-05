@@ -177,6 +177,9 @@ int main()
 				break;
 		}
 
+		int BullsCount = 0;
+		int CowsCount = 0;
+
 		for (int j = 0; j < length - 1; j++)
 		{
 			int type = IsBullsOrCows(numberArr, length, InputCorrect[j], j);
@@ -184,15 +187,18 @@ int main()
 			switch (type)
 			{
 			case Bulls:
-				InputCorrect[j] = 'B';
+				// InputCorrect[j] = 'B';
+				BullsCount++;
 				break;
 			case Cows:
-				InputCorrect[j] = 'C';
+				// InputCorrect[j] = 'C';
+				CowsCount++;
 				break;
 			}
 		}
 
-		if (IsCorrect(InputCorrect, length))
+		// if (IsCorrect(InputCorrect, length))
+		if (BullsCount == 4)
 		{
 			printf("정답입니다. 총 입력한 횟수: %d\n\n", i + 1);
 			win = 1;
@@ -200,7 +206,8 @@ int main()
 		}
 		else
 		{
-			printf("판정: %s, 입력한 횟수: %d\n\n", InputCorrect, i + 1);
+			// printf("판정: %s, 입력한 횟수: %d\n\n", InputCorrect, i + 1);
+			printf("판정: %dB%dC, 입력한 횟수: %d\n\n", BullsCount, CowsCount, i + 1);
 		}
 	}
 
