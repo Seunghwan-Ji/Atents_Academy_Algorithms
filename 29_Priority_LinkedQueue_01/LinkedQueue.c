@@ -56,16 +56,17 @@ void LQ_Enqueue( LinkedQueue* Queue, Node* NewNode )
 
         while (currentNode != NULL)
         {
+            // 우선 순위 비교.
             if (NewNode->priority < currentNode->priority)
             {
-                // front 에 삽입하는 경우.
+                // front 에 삽입.
                 if (currentNode == Queue->Front)
                 {
                     NewNode->NextNode = currentNode;
                     Queue->Front = NewNode;
                     break;
                 }
-                // front 와 real 사이에 삽입하는 경우.
+                // front 와 real 사이에 삽입.
                 else
                 {
                     prevNode->NextNode = NewNode;
@@ -78,7 +79,7 @@ void LQ_Enqueue( LinkedQueue* Queue, Node* NewNode )
             currentNode = currentNode->NextNode;
         }
 
-        // real 에 삽입하는 경우.
+        // real 에 삽입.
         if (currentNode == NULL)
         {
             Queue->Rear->NextNode = NewNode;
