@@ -57,7 +57,7 @@ void LQ_Enqueue( LinkedQueue* Queue, Node* NewNode )
         while (currentNode != NULL)
         {
             // 우선 순위 비교.
-            if (NewNode->priority < currentNode->priority)
+            if (NewNode->priority > currentNode->priority)
             {
                 // front 에 삽입.
                 if (currentNode == Queue->Front)
