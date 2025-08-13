@@ -1,5 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
-#define _CRT_NONSTDC_NO_DEPRECATE
+#define _CRT_SECURE_NO_WARNINGS // 표준 C 함수 보안 경고 끔.
+#define _CRT_NONSTDC_NO_DEPRECATE // 비표준 C 함수 보안 경고 끔.
 #include "Calculator.h"
 
 char NUMBER[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' };
