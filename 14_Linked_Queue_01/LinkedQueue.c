@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "LinkedQueue.h"
 
 void  LQ_CreateQueue( LinkedQueue** Queue )
