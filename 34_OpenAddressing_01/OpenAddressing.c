@@ -19,24 +19,36 @@ void OAHT_Set(HashTable** HT, KeyType Key, ValueType Value)
     int    KeyLen, Address, StepSize;
     double Usage;
 
+    // 해시 테이블의 점유율 = 채워진 슬롯 수 / 전체 슬롯 수
     Usage = (double)(*HT)->OccupiedCount / (*HT)->TableSize;
 
+    // 점유율이 50% 초과하면 OAHT_Rehash()를 호출해서 테이블 크기를 늘리고 다시 해시.
     if (Usage > 0.5)
     {
         OAHT_Rehash(HT);
     }
 
+    // 기본 해시값 & 보조 해시값 계산
+
     KeyLen = strlen(Key);
+
+    // 기본 해시 함수로 나온 슬롯 인덱스
     Address = OAHT_Hash(Key, KeyLen, (*HT)->TableSize);
+
+    // 보조 해시 함수 값 (이중 해싱에서 충돌 시 이동할 간격 역할)
     StepSize = OAHT_Hash2(Key, KeyLen, (*HT)->TableSize);
 
+    // 충돌 해결 (이중 해싱)
+    // 현재 테이블의 Address 슬롯이 비어있지 않고, 해당 슬롯의 키와 삽입할 키가 같지 않으면 반복.
     while ((*HT)->Table[Address].Status != EMPTY &&
-        strcmp((*HT)->Table[Address].Key, Key) != 0)
+        strcmp((*HT)->Table[Address].Key, Key) != 0) // strcmp(a, b): 문자열 a와 b를 비교, 같으면 0 반환
     {
         printf("Collision occured! : Key(%s), Address(%d), StepSize(%d)\n",
             Key, Address, StepSize);
 
         Address = (Address + StepSize) % (*HT)->TableSize;
+        
+        // 즉, 같은 키면 덮어쓰고, 다른 키면 StepSize 간격으로 탐색 → 이중 해싱(Double Hashing) 기법
     }
 
     (*HT)->Table[Address].Key = (char*)malloc(sizeof(char) * (KeyLen + 1));
