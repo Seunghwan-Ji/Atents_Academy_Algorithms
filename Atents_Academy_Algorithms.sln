@@ -83,6 +83,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "35_Graph_01", "35_Graph_01\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "36_Adjacency_Matrix_01", "36_Adjacency_Matrix_01\36_Adjacency_Matrix_01.vcxproj", "{8D41F036-846D-49BC-823B-48505A6E1C10}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "37_GraphTraversal_01", "37_GraphTraversal_01\37_GraphTraversal_01.vcxproj", "{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -411,6 +413,14 @@ Global
 		{8D41F036-846D-49BC-823B-48505A6E1C10}.Release|x64.Build.0 = Release|x64
 		{8D41F036-846D-49BC-823B-48505A6E1C10}.Release|x86.ActiveCfg = Release|Win32
 		{8D41F036-846D-49BC-823B-48505A6E1C10}.Release|x86.Build.0 = Release|Win32
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Debug|x64.ActiveCfg = Debug|x64
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Debug|x64.Build.0 = Debug|x64
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Debug|x86.ActiveCfg = Debug|Win32
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Debug|x86.Build.0 = Debug|Win32
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Release|x64.ActiveCfg = Release|x64
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Release|x64.Build.0 = Release|x64
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Release|x86.ActiveCfg = Release|Win32
+		{A9DA82A7-D20E-46BC-AEA5-C99A1F5D0C11}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
