@@ -10,11 +10,19 @@ void Prim(Graph* G, Vertex* StartVertex, Graph* MST)
     Vertex* CurrentVertex = NULL;
     Edge* CurrentEdge = NULL;
 
+    // 가중치 배열.
     int* Weights = (int*)malloc(sizeof(int) * G->VertexCount);
+
+    // MST 그래프로 새로 만드는 배열, 인덱스로 정점 접근이 용이.
     Vertex** MSTVertices = (Vertex**)malloc(sizeof(Vertex*) * G->VertexCount);
+    
+    // 방문 여부 배열, 각 인덱스에 해당하는 정점의 주소값이 저장됨.
     Vertex** Fringes = (Vertex**)malloc(sizeof(Vertex*) * G->VertexCount);
+    
+    // From 정점 배열.
     Vertex** Precedences = (Vertex**)malloc(sizeof(Vertex*) * G->VertexCount);
 
+    // 각 배열 초기화.
     CurrentVertex = G->Vertices;
     while (CurrentVertex != NULL)
     {
@@ -31,7 +39,7 @@ void Prim(Graph* G, Vertex* StartVertex, Graph* MST)
 
     PQ_Enqueue(PQ, StartNode);
 
-    Weights[StartVertex->Index] = 0;
+    Weights[StartVertex->Index] = 0; // 시작 정점은 가중치 0으로 초기화.
 
     while (!PQ_IsEmpty(PQ))
     {
