@@ -89,6 +89,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "38_TopologicalSort_01", "38
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "39_MinimumSpanningTree_01", "39_MinimumSpanningTree_01\39_MinimumSpanningTree_01.vcxproj", "{1E39D2D5-74D2-4A77-86AC-CC55054342B6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "40_Dijkstra_01", "40_Dijkstra_01\40_Dijkstra_01.vcxproj", "{4FE8CD70-5019-4243-B128-27A3B49DD949}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -441,6 +443,14 @@ Global
 		{1E39D2D5-74D2-4A77-86AC-CC55054342B6}.Release|x64.Build.0 = Release|x64
 		{1E39D2D5-74D2-4A77-86AC-CC55054342B6}.Release|x86.ActiveCfg = Release|Win32
 		{1E39D2D5-74D2-4A77-86AC-CC55054342B6}.Release|x86.Build.0 = Release|Win32
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Debug|x64.ActiveCfg = Debug|x64
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Debug|x64.Build.0 = Debug|x64
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Debug|x86.ActiveCfg = Debug|Win32
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Debug|x86.Build.0 = Debug|Win32
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Release|x64.ActiveCfg = Release|x64
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Release|x64.Build.0 = Release|x64
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Release|x86.ActiveCfg = Release|Win32
+		{4FE8CD70-5019-4243-B128-27A3B49DD949}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
