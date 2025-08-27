@@ -10,7 +10,7 @@ void Dijkstra(Graph* G, Vertex* StartVertex, Graph* ShortestPath)
     Vertex* CurrentVertex = NULL;
     Edge* CurrentEdge = NULL;
 
-    int* Weights = (int*)malloc(sizeof(int) * G->VertexCount);
+    int* Weights = (int*)malloc(sizeof(int) * G->VertexCount); // 가중치 배열
     Vertex** ShortestPathVertices =
         (Vertex**)malloc(sizeof(Vertex*) * G->VertexCount);
     Vertex** Fringes = (Vertex**)malloc(sizeof(Vertex*) * G->VertexCount);
