@@ -27,32 +27,35 @@ int main(int argc, char** argv) {
 
     int patternLength = strlen(pattern);   // 패턴 문자열의 길이
     int line = 1;
+    int j = 0;
 
-    while (fgets(Text, 512, fp) != NULL) {
+    while (fgets(Text, 512, fp) != NULL)
+    {
         // 읽어들인 문장안에 찾는 패턴 문자열이 있는지 확인하고
         // 있으면 해당 라인번호와 컬럼번호를 출력하면됩니다.
 
-        int Text_length = strlen(Text);   // 읽은 문자열의 길이를 구한다.
+        int length = strlen(Text);   // 읽은 문자열의 길이를 구한다.
 
-        // printf("line: %d : %s\n", line, Text);
-
-        int col = 1;
-        int pattern_index = 0;
-
-        for (int i = 0; i < Text_length; i++)
+        // i 값이 증가하면서 문장의 문자에 순차적으로 접근
+        for (int i = 0; i < length - patternLength + 1; i++)
         {
-            if (Text[i] != ' ')
+            if (Text[i] == pattern[0]) // 문장의 문자와 패턴의 첫문자가 같은지 비교
             {
-                Text[i] == pattern[pattern_index] ? pattern_index++ : (pattern_index = 0);
-
-                if (pattern_index == patternLength)
+                for (j = 1; j < patternLength; j++)
                 {
-                    printf("Line: %d, Col: %d\n", line, col);
+
+                    if (pattern[j] != Text[i + j])
+                    {
+                        break;
+                    }
                 }
-            }
-            else
-            {
-                col++;
+
+                // 패턴과 같은 문자열이 있는지 판단
+                // 안쪽 for문의 j값이 pattern의 길이만큼 증가 햇으면 패턴과 같은 문자열이 있음.
+                if (j >= patternLength)
+                {
+                    printf("line: %d, column: %d, text: %s\n", line, i, Text);
+                }
             }
         }
 
