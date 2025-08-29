@@ -97,6 +97,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "42_KarpRabin_01", "42_KarpR
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "43_KnuthMorrisPratt_01", "43_KnuthMorrisPratt_01\43_KnuthMorrisPratt_01.vcxproj", "{E96A0455-ABB2-4FD8-A8DA-F4C584B16E60}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "44_MergeSort_01", "44_MergeSort_01\44_MergeSort_01.vcxproj", "{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -481,6 +483,14 @@ Global
 		{E96A0455-ABB2-4FD8-A8DA-F4C584B16E60}.Release|x64.Build.0 = Release|x64
 		{E96A0455-ABB2-4FD8-A8DA-F4C584B16E60}.Release|x86.ActiveCfg = Release|Win32
 		{E96A0455-ABB2-4FD8-A8DA-F4C584B16E60}.Release|x86.Build.0 = Release|Win32
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Debug|x64.ActiveCfg = Debug|x64
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Debug|x64.Build.0 = Debug|x64
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Debug|x86.Build.0 = Debug|Win32
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Release|x64.ActiveCfg = Release|x64
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Release|x64.Build.0 = Release|x64
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Release|x86.ActiveCfg = Release|Win32
+		{5E4A4DD9-5C3A-4205-8368-CC28ED19FC78}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
